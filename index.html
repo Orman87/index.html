@@ -1,9 +1,9 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0a0e17">
+  <meta name="theme-color" content="#1a1300">
   <link rel="icon" type="image/png" href="https://files.catbox.moe/3xfxhw.jpg">
   
   <!-- Font Awesome for icons -->
@@ -11,9 +11,10 @@
 
   <style>
     :root {
-      --primary: #00f7ff;
-      --secondary: #1e3a78;
-      --bg: #0a0e17;
+      --primary: #FFD700;
+      --secondary: #D4AF37;
+      --tertiary: #B8860B;
+      --bg: #0f0a00;
       --glass: rgba(255, 255, 255, 0.05);
     }
 
@@ -49,7 +50,7 @@
       height: 100%;
       z-index: -1;
       overflow: hidden;
-      background: linear-gradient(45deg, var(--bg) 30%, rgba(10, 14, 23, 0.8));
+      background: radial-gradient(circle, rgba(15,10,0,0.8) 0%, rgba(15,10,0,0.9) 100%);
     }
 
     video {
@@ -57,17 +58,19 @@
       height: 100%;
       object-fit: cover;
       mix-blend-mode: screen;
-      opacity: 0.15;
+      opacity: 0.2;
+      filter: sepia(100%) brightness(120%) saturate(150%);
     }
 
     h1 {
       font-size: clamp(2rem, 5vw, 3.5rem);
       margin-bottom: 2rem;
-      background: linear-gradient(45deg, var(--primary), #00b4d8);
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
       animation: textFloat 3s ease-in-out infinite;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
     }
 
     .button-grid {
@@ -100,7 +103,7 @@
       animation: pulse 4s infinite ease-in-out;
     }
 
-    /* Colorful gradient borders */
+    /* Golden gradient borders */
     .btn::before {
       content: '';
       position: absolute;
@@ -110,7 +113,7 @@
       bottom: 0;
       border-radius: 12px;
       padding: 1px;
-      background: linear-gradient(45deg, #00f7ff, #00b4d8, #1e3a78, #00f7ff);
+      background: linear-gradient(45deg, var(--primary), var(--secondary), var(--tertiary), var(--primary));
       -webkit-mask: 
         linear-gradient(#fff 0 0) content-box, 
         linear-gradient(#fff 0 0);
@@ -127,13 +130,13 @@
     .btn:hover {
       background: rgba(255, 255, 255, 0.1);
       transform: translateY(-5px) scale(1.05);
-      box-shadow: 0 10px 25px rgba(0, 247, 255, 0.3);
+      box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
       animation: none;
     }
 
     .btn:hover::before {
       opacity: 1;
-      background: linear-gradient(45deg, #00f7ff, #00b4d8, #00f7ff);
+      background: linear-gradient(45deg, var(--primary), var(--secondary), var(--primary));
       animation: borderRotate 3s linear infinite;
     }
 
@@ -144,10 +147,14 @@
     .btn i {
       font-size: 1.3em;
       transition: transform 0.3s ease;
+      color: var(--primary);
+      text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
     }
     
     .btn:hover i {
       transform: scale(1.2);
+      color: #fff;
+      text-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
     }
 
     /* Click animation effect */
@@ -161,10 +168,10 @@
       border-radius: 12px;
       background: linear-gradient(
         135deg,
-        rgba(0, 247, 255, 0.7),
-        rgba(0, 180, 216, 0.7),
-        rgba(30, 58, 120, 0.7),
-        rgba(0, 247, 255, 0.7)
+        rgba(255, 215, 0, 0.7),
+        rgba(212, 175, 55, 0.7),
+        rgba(184, 134, 11, 0.7),
+        rgba(255, 215, 0, 0.7)
       );
       z-index: -1;
       animation: lightUp 0.8s ease-out forwards;
@@ -173,14 +180,15 @@
     
     .btn.clicked {
       background: rgba(255, 255, 255, 0.2);
-      box-shadow: 0 0 30px rgba(0, 247, 255, 0.5);
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
     }
 
     footer {
       position: fixed;
       bottom: 1.5rem;
-      color: rgba(255, 255, 255, 0.6);
+      color: rgba(255, 215, 0, 0.6);
       font-size: 0.9rem;
+      text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
     }
 
     .audio-control {
@@ -189,7 +197,7 @@
       right: 1.5rem;
       background: var(--glass);
       backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 215, 0, 0.2);
       border-radius: 50%;
       width: 40px;
       height: 40px;
@@ -200,13 +208,27 @@
       z-index: 10;
       transition: all 0.3s ease;
       animation: pulse 4s infinite ease-in-out;
+      color: var(--primary);
     }
 
     .audio-control:hover {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 215, 0, 0.1);
       transform: scale(1.1);
-      box-shadow: 0 0 15px rgba(0, 247, 255, 0.3);
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
       animation: none;
+    }
+
+    /* Sparkle effect */
+    .sparkle {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      background: white;
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0;
+      animation: sparkle 1.5s ease-out;
+      box-shadow: 0 0 10px 2px rgba(255, 215, 0, 0.8);
     }
 
     @keyframes textFloat {
@@ -221,8 +243,8 @@
     }
     
     @keyframes pulse {
-      0%, 100% { transform: scale(1); box-shadow: 0 0 0 rgba(0, 247, 255, 0); }
-      50% { transform: scale(1.02); box-shadow: 0 0 15px rgba(0, 247, 255, 0.2); }
+      0%, 100% { transform: scale(1); box-shadow: 0 0 0 rgba(255, 215, 0, 0); }
+      50% { transform: scale(1.02); box-shadow: 0 0 15px rgba(255, 215, 0, 0.3); }
     }
     
     @keyframes lightUp {
@@ -239,6 +261,17 @@
     @keyframes iconPulse {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.1); }
+    }
+    
+    @keyframes sparkle {
+      0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(0.5);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(var(--tx), var(--ty)) scale(1.5);
+      }
     }
 
     @media (max-width: 768px) {
@@ -346,6 +379,9 @@
       // Add clicked class for animation
       button.classList.add('clicked');
       
+      // Create sparkle effects
+      createSparkles(button);
+      
       // Remove animation classes after animation completes
       setTimeout(() => {
         button.classList.remove('clicked');
@@ -355,6 +391,35 @@
       setTimeout(() => {
         window.open(url);
       }, 300);
+    }
+    
+    // Create sparkle effects
+    function createSparkles(element) {
+      const rect = element.getBoundingClientRect();
+      for (let i = 0; i < 12; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.classList.add('sparkle');
+        
+        // Position at random locations around the button
+        const x = Math.random() * rect.width;
+        const y = Math.random() * rect.height;
+        
+        sparkle.style.left = `${x}px`;
+        sparkle.style.top = `${y}px`;
+        
+        // Random movement direction
+        const tx = (Math.random() - 0.5) * 100;
+        const ty = (Math.random() - 0.5) * 100;
+        sparkle.style.setProperty('--tx', `${tx}px`);
+        sparkle.style.setProperty('--ty', `${ty}px`);
+        
+        element.appendChild(sparkle);
+        
+        // Remove after animation completes
+        setTimeout(() => {
+          sparkle.remove();
+        }, 1500);
+      }
     }
 
     // Add icon animations
@@ -380,6 +445,33 @@
           });
       });
     }
+    
+    // Add golden sparkles randomly in the background
+    setInterval(() => {
+      if (Math.random() > 0.7) {
+        const sparkle = document.createElement('div');
+        sparkle.classList.add('sparkle');
+        
+        sparkle.style.position = 'fixed';
+        sparkle.style.left = `${Math.random() * 100}vw`;
+        sparkle.style.top = `${Math.random() * 100}vh`;
+        
+        const size = Math.random() * 6 + 2;
+        sparkle.style.width = `${size}px`;
+        sparkle.style.height = `${size}px`;
+        
+        const tx = (Math.random() - 0.5) * 50;
+        const ty = (Math.random() - 0.5) * 50;
+        sparkle.style.setProperty('--tx', `${tx}px`);
+        sparkle.style.setProperty('--ty', `${ty}px`);
+        
+        document.body.appendChild(sparkle);
+        
+        setTimeout(() => {
+          sparkle.remove();
+        }, 1500);
+      }
+    }, 300);
   </script>
 </body>
 </html>
